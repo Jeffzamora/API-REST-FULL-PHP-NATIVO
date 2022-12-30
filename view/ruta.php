@@ -50,7 +50,13 @@ if(count(array_filter($arrayRutas))==1){
             //Peticion PUT PARA actualizar cursos
             if(isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == "PUT" ){
                 $cursos = new controllerCursos();
-                $cursos->update();
+                $cursos->update(array_filter($arrayRutas)[3]);
+            }
+
+            //Peticion DELETE PARA borrar cursos
+            if(isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == "DELETE" ){
+                $cursos = new controllerCursos();
+                $cursos->delete(array_filter($arrayRutas)[3]);
             }
 
         }

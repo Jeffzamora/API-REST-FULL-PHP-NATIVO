@@ -27,13 +27,10 @@ if(count(array_filter($arrayRutas))==1){
         }
         //cuando se hace una peticion a registro
         if (array_filter($arrayRutas)[2] == "registro"){
-            $json = array(
-                "Detalle"=>"Estas en la Vista Registro"
-            );
-
-            echo json_encode($json, true);
-
-            return;
+            if(isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == "GET" ){
+                $clientes = new controllerClientes();
+                $clientes->create();
+            }
 
         }
 

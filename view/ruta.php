@@ -16,20 +16,21 @@ if(count(array_filter($arrayRutas))==1){
 }else{
     //cuando pasamos una peticion en el indice array $arrayRutas
     if(count(array_filter($arrayRutas))==2){
-        //cuando se hace una peticion a cursos
 
+        //Peticion para Crear Cursos
         if (array_filter($arrayRutas)[2] == "cursos"){
             if(isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == "POST" ){
                 $cursos = new controllerCursos();
                 $cursos->create();
             }
-
-        }elseif(isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == "GET"){
-            $cursos = new controllerCursos();
-            $cursos->index();
+            //Peticion para Listar los Cursos
+            elseif(isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == "GET"){
+                $cursos = new controllerCursos();
+                $cursos->index();
+            }
 
         }
-        //cuando se hace una peticion a registro
+        //Peticion para Crear Registro Cliente
         if (array_filter($arrayRutas)[2] == "registro"){
             if(isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == "GET" ){
                 $clientes = new controllerClientes();
@@ -38,5 +39,20 @@ if(count(array_filter($arrayRutas))==1){
 
         }
 
+    }else{
+        if(array_filter($arrayRutas)[2] == "cursos" && is_numeric(array_filter($arrayRutas)[3])){
+            //Petecion GET para retornar los ID de los cursos
+            if(isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == "GET" ){
+                $cursos = new controllerCursos();
+                $cursos->show(array_filter($arrayRutas)[3]);
+            }
+
+            //Peticion PUT PARA actualizar cursos
+            if(isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == "PUT" ){
+                $cursos = new controllerCursos();
+                $cursos->update();
+            }
+
+        }
     }
 }

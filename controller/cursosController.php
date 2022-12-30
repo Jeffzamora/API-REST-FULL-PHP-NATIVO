@@ -10,4 +10,13 @@ class controllerCursos{
 
             return;
     }
+    public function create(){
+        $json = array(
+            "Detalle"=>"Estas en la Vista CREAR cursos"
+        );
+
+        echo json_encode($json, true);
+
+        return;
+}
 }

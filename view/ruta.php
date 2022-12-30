@@ -21,8 +21,12 @@ if(count(array_filter($arrayRutas))==1){
         if (array_filter($arrayRutas)[2] == "cursos"){
             if(isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == "POST" ){
                 $cursos = new controllerCursos();
-                $cursos->index();
+                $cursos->create();
             }
+
+        }elseif(isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == "GET"){
+            $cursos = new controllerCursos();
+            $cursos->index();
 
         }
         //cuando se hace una peticion a registro

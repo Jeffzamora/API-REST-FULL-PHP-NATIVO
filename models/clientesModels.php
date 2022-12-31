@@ -18,7 +18,7 @@ class ModelsClientes {
 
         $stmt=conexion::conect()->prepare("INSERT INTO $tabla(nombre, apellido, email, id_cliente, llave_secreta, created_at, updated_at) VALUES (:nombre, :apellido, :email, :id_cliente, :llave_secreta, :created_at, :updated_at)");
 
-       	$stmt -> bindParam(":nombre", $datos["nombre"], PDO::PARAM_STR);
+        $stmt -> bindParam(":nombre", $datos["nombre"], PDO::PARAM_STR);
 		$stmt -> bindParam(":apellido", $datos["apellido"], PDO::PARAM_STR);
 		$stmt -> bindParam(":email", $datos["email"], PDO::PARAM_STR);
 		$stmt -> bindParam(":id_cliente", $datos["id_cliente"], PDO::PARAM_STR);
